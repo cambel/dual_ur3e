@@ -31,7 +31,7 @@
     <arg name="urdf_path" value="$(arg urdf_path)"/>
   </include> -->
 
-  <include file="$(find ur3e_dual_moveit_config)/launch/ros_controllers.launch"/>
+  <!-- <include file="$(find ur3e_dual_moveit_config)/launch/ros_controllers.launch"/> -->
 
   <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
   <include file="$(find ur3e_dual_moveit_config)/launch/planning_context.launch">
