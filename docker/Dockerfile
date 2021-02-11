@@ -31,11 +31,14 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     python-catkin-tools \
     python-setuptools \
     software-properties-common \
-    python-dev
+    python-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ### Ros Workspace ###
 RUN pip install catkin-pkg rospkg PySide2 enum34
+
+## Fix for gazebo
+ADD config.yaml /root/.ignition/fuel/config.yaml
 
 # Set up the workspace
 RUN /bin/bash -c "source /opt/ros/melodic/setup.bash \
@@ -43,21 +46,30 @@ RUN /bin/bash -c "source /opt/ros/melodic/setup.bash \
                && cd ~/ros_ws/ \
                && catkin init"
 
+
 RUN /bin/bash -c "source /opt/ros/melodic/setup.bash \
                && cd ~/ros_ws/src/ \
                && git clone https://github.com/cambel/dual_ur3e \
+               && git clone https://bitbucket.org/traclabs/trac_ik.git \
                && git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git ur_driver \
                && git clone -b calibration_devel https://github.com/fmauch/universal_robot.git universal_robot \
-               && cd .. && apt-get update && rosdep install -iyr --from-paths src \
-               && rm -rf build \
-               && catkin build \
+               && cd .. && apt-get update \
+               && rosinstall ~/ros_ws/src /opt/ros/melodic src/dual_ur3e/dependencies.rosinstall \
+               && rosdep install -iyr --from-paths src \
+               && rosdep fix-permissions \
+               && rosdep update \
+               && rosdep install --from-paths src --ignore-src --rosdistro=melodic -y \
                && rm -rf /var/lib/apt/lists/*"
 
-RUN apt update && apt install -y \
-    wget mesa-utils\
-    && rm -rf /var/lib/apt/lists/*
+RUN /bin/bash -c "cd ~/ros_ws/src/gazebo_ros_link_attacher \
+                  && git checkout melodic-devel \
+                  && cd ~/ros_ws/src/robotiq \
+                  && git fetch origin && git checkout melodic-devel"
 
-RUN apt-get install -y build-essential libgl1-mesa-dev qt512-meta-minimal qt512webengine qt512svg
+RUN /bin/bash -c "source /opt/ros/melodic/setup.bash \
+               && cd ~/ros_ws/ \
+               && rm -rf build \
+               && catkin build"
 
 RUN echo 'source /opt/ros/melodic/setup.bash' >> ~/.bashrc
 RUN echo 'source /root/ros_ws/devel/setup.bash' >> ~/.bashrc
