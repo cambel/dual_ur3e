@@ -2,14 +2,14 @@
 <launch>
   <!-- Export env variable so that gazebo finds our models -->
   <env name="GAZEBO_MODEL_PATH"
-       value="$(find ur3_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)" />
+       value="$(find ur3e_dual_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)" />
   
   <!-- Launch file parameters -->
   <arg name="paused"     default="true"/>
   <arg name="debug"      default="false"/>
   <arg name="gui"        default="true"/>
   <arg name="rate"       default="125" />
-  <arg name="world_name" default="$(find ur3_gazebo)/worlds/dual_ur3e.world" />
+  <arg name="world_name" default="$(find ur3e_dual_gazebo)/worlds/dual_ur3e.world" />
   <arg name="effort_interface" default="false"/>
   <arg name="peg_shape" default="cylinder"/>
   <arg name="grasp_plugin" default="false"/>

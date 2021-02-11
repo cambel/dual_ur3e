@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="gui" default="false" />
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" />
+  <arg name="kinematics_config" default="$(find ur_e_description)/config/ur3e_default.yaml"/>
 
-  <param name="robot_description" command="$(find xacro)/xacro $(find ur3e_dual_description)/urdf/dual_ur3e.urdf.xacro" />
-  
+  <param name="robot_description" command="$(find xacro)/xacro $(find ur3e_dual_description)/urdf/dual_ur3e.urdf.xacro
+                                            transmission_hw_interface:=$(arg transmission_hw_interface)
+                                            kinematics_config:=$(arg kinematics_config)" />
+      
   <param name="use_gui" value="$(arg gui)"/>
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
   
