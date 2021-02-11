@@ -3,6 +3,7 @@
        name="ur3e" >
 
   <!-- Arguments -->
+  <xacro:arg name="grasp_plugin" default="false" />
   <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
   <xacro:arg name="kinematics_config" default="$(find ur_e_description)/config/ur3e_default.yaml"/>
 
