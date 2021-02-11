@@ -8,7 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   gripper_action_controller
   joint_state_controller
   joint_trajectory_controller
-  ur3_description
+  ur3e_dual_description
   robot_state_publisher
   sensor_msgs
   trajectory_msgs
