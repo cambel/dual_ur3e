@@ -58,4 +58,9 @@
     <origin xyz="0.365 -0.345 1.330" rpy="1.5707 0.0 1.5707" />
   </joint>
 
+  <xacro:include filename="$(find ur3e_dual_description)/urdf/robotiq_hande_gripper_manual_exchanger.urdf.xacro" />
+  <xacro:robotiq_hande_gripper_adapter_manual_exchanger prefix="leftarm_" parent = "leftarm_ee_link" />
+  <xacro:robotiq_hande_gripper_adapter_manual_exchanger prefix="rightarm_" parent = "rightarm_ee_link" />
+
+
 </robot>
