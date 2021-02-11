@@ -1,0 +1,26 @@
+controller_list:
+  - name: fake_leftarm_controller
+    joints:
+      - leftarm_shoulder_pan_joint
+      - leftarm_shoulder_lift_joint
+      - leftarm_elbow_joint
+      - leftarm_wrist_1_joint
+      - leftarm_wrist_2_joint
+      - leftarm_wrist_3_joint
+  - name: fake_rightarm_controller
+    joints:
+      - rightarm_shoulder_pan_joint
+      - rightarm_shoulder_lift_joint
+      - rightarm_elbow_joint
+      - rightarm_wrist_1_joint
+      - rightarm_wrist_2_joint
+      - rightarm_wrist_3_joint
+  - name: fake_leftarm_ee_controller
+    joints:
+      []
+  - name: fake_rightarm_ee_controller
+    joints:
+      []
+initial:  # Define initial robot poses.
+#  - group: leftarm
+#    pose: home

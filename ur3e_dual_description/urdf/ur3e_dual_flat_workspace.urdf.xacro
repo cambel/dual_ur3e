@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+
+<!-- This macro adds a convenient TF frame at the tip of the closed gripper. -->
+<!-- The position of the TF frame has not been measured at all and needs to be calibrated. -->
+
+<robot name="ur3e_dual_workspace" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <link name="workspace_table">
+            <visual>
+            <geometry>
+                <mesh filename="package://ur3e_dual_description/meshes/ur3e_table.stl" />
+            </geometry>
+            <material name="dark_gray">
+            <color rgba="${100/255} ${100/255} ${100/255} 1.0"/>
+            </material>
+            </visual>
+            <collision>
+            <geometry>
+                <mesh filename="package://ur3e_dual_description/meshes/ur3e_table.stl" />
+            </geometry>
+            </collision>
+            <inertial>
+            <origin xyz="0.401616 -0.000430 0.525458" rpy="0 0 0" />
+            <mass value="10.0" />
+            <inertia ixx="0.054454" ixy="-0.000007" ixz="0.005301" 
+                    iyy="0.034120" iyz="0.000009" izz="0.046806"/>
+            </inertial>
+    </link>
+    <link name="workspace_tool_holder">
+        <visual>
+        <geometry>
+            <mesh filename="package://ur3e_dual_description/meshes/simple_tool_support.stl" />
+        </geometry>
+        <material name="transparent">
+          <color rgba="${150/255} ${150/255} ${150/255} 0.7"/>
+        </material>
+        </visual>
+        <collision>
+        <geometry>
+            <mesh filename="package://ur3e_dual_description/meshes/simple_tool_support.stl" />
+        </geometry>
+        </collision>
+        <inertial>
+        <origin xyz="0.401616 -0.000430 0.525458" rpy="0 0 0" />
+        <mass value="10.0" />
+        <inertia ixx="0.054454" ixy="-0.000007" ixz="0.005301" 
+                iyy="0.034120" iyz="0.000009" izz="0.046806"/>
+        </inertial>
+    </link>
+
+    <link name="rightarm_support">
+      <visual>
+        <origin xyz="0.0 0.0 0.11" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.1 0.22"/>
+        </geometry>
+        <material name="transparent">
+          <color rgba="${150/255} ${150/255} ${150/255} 0.7"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.11" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.1 0.22"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="2.0" />
+        <origin xyz="0.0 0.0 0.0" />
+        <inertia ixx = "1.0" ixy = "0.000000" ixz = "0.000000"
+             iyx = "0.000000" iyy = "1.0" iyz = "0.000000"
+             izx = "0.000000" izy = "0.000000" izz = "1.0" />
+      </inertial>
+    </link>
+
+    <link name="leftarm_support">
+      <visual>
+        <origin xyz="0.0 0.0 0.11" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.1 0.22"/>
+        </geometry>
+        <material name="transparent">
+          <color rgba="${150/255} ${150/255} ${150/255} 0.7"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.11" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.1 0.22"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="2.0" />
+        <origin xyz="0.0 0.0 0.0" />
+        <inertia ixx = "1.0" ixy = "0.000000" ixz = "0.000000"
+             iyx = "0.000000" iyy = "1.0" iyz = "0.000000"
+             izx = "0.000000" izy = "0.000000" izz = "1.0" />
+      </inertial>
+    </link>
+
+    <joint name="workspace_table_rightarm_support_joint" type="fixed">
+        <parent link="workspace_table" />
+        <child link="rightarm_support" />
+        <origin xyz="0.50 -0.45 0.78" rpy="0.0 0.0 0.0" />
+    </joint>
+
+    <joint name="workspace_table_leftarm_support_joint" type="fixed">
+        <parent link="workspace_table" />
+        <child link="leftarm_support" />
+        <origin xyz="0.50 0.45 0.78" rpy="0.0 0.0 0.0" />
+    </joint>
+
+    <joint name="workspace_table_tool_holder_joint" type="fixed">
+        <parent link="workspace_table" />
+        <child link="workspace_tool_holder" />
+        <origin xyz="0.96 0.20 0.75" rpy="1.5707 0.0 3.1415" />
+    </joint>
+
+    <gazebo reference="workspace_body">
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <material>Gazebo/BlueTransparent</material>
+    </gazebo>
+        <gazebo reference="workspace_table">
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
+        <gazebo reference="workspace_tool_holder">
+        <mu1>0.9</mu1>
+        <mu2>0.9</mu2>
+        <material>Gazebo/GreyTransparent</material>
+    </gazebo>
+</robot>

@@ -1,0 +1,25 @@
+<launch>
+    <!-- start the robots -->
+    <include file="$(find ur3e_dual_control)/launch/ur3e_bringup.launch" ns="left_arm">
+        <arg name="tf_prefix" value="leftarm" />
+        <arg name="robot_ip" value="10.0.2.2"/>
+        <arg name="reverse_port" value="50001"/>
+        <arg name="script_sender_port" value="50002"/>
+        <arg name="kinematics_config" value="/root/dev/tools/my_robot_calibration-left.yaml" />
+        <arg name="robot_description_file" value="$(find ur3e_dual_description)/launch/ur3e_dual_upload.launch" />
+        <arg name="controller_config_file" value="$(find ur3e_dual_control)/config/ur3e_controllers.yaml"/>
+        <arg name="prefix" default="leftarm_" />
+    </include>
+    
+    <include file="$(find ur3e_dual_control)/launch/ur3e_bringup.launch" ns="right_arm">
+        <arg name="tf_prefix" value="rightarm" />
+        <arg name="robot_ip" value="10.0.2.3"/>
+        <arg name="reverse_port" value="50003"/>
+        <arg name="script_sender_port" value="50004"/>
+        <arg name="kinematics_config" value="/root/dev/tools/my_robot_calibration-right.yaml" />
+        <arg name="robot_description_file" value="$(find ur3e_dual_description)/launch/ur3e_dual_upload.launch" />
+        <arg name="controller_config_file" value="$(find ur3e_dual_control)/config/ur3e_controllers.yaml"/>
+        <arg name="prefix" default="rightarm_" />
+    </include>
+
+</launch>

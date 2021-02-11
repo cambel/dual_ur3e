@@ -1,0 +1,286 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 84
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+      Splitter Ratio: 0.5625
+    Tree Height: 530
+  - Class: rviz/Help
+    Name: Help
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        leftarm_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        leftarm_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_ee_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_forearm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_hand_e_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_hande_left_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_hande_right_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_robotiq_coupler:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_robotiq_hande_tip_link_joint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        leftarm_shoulder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_tool0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        leftarm_upper_arm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_wrist_1_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_wrist_2_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leftarm_wrist_3_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_SXR0030_M_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rightarm_SXR0030_TF4_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rightarm_SXRZ0030_MF4_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rightarm_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rightarm_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_ee_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_forearm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_hand_e_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_hande_left_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_hande_right_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_kosmek_exchanger_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rightarm_robotiq_coupler:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_robotiq_hande_tip_link_joint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rightarm_shoulder_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_tool0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rightarm_upper_arm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_wrist_1_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_wrist_2_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rightarm_wrist_3_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        workspace_body:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        workspace_table:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        workspace_tool_holder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+      Name: RobotModel
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+  Enabled: true
+  Global Options:
+    Background Color: 200; 200; 200
+    Default Light: true
+    Fixed Frame: world
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 2.9622223377227783
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 0.7514877319335938
+        Y: 0.24936853349208832
+        Z: 1.0699599981307983
+      Focal Shape Fixed Size: false
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.46479713916778564
+      Target Frame: world
+      Value: Orbit (rviz)
+      Yaw: 0.3654061555862427
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 759
+  Help:
+    collapsed: false
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd0000000100000000000002a2000002a1fc0200000007fb000000100044006900730070006c006100790073010000003b000002a1000000c700fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000001bc000000b0000000a000fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000000000000000fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000168000001740000000000000000000002c5000002a100000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Views:
+    collapsed: false
+  Width: 1389
+  X: 298
+  Y: 114

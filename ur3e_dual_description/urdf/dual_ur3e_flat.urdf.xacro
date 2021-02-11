@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="ur3e" >
+
+  <!-- Arguments -->
+  <xacro:arg name="grasp_plugin" default="false" />
+  <xacro:arg name="use_effort_interface" default="false" />
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur3_description)/urdf/common.gazebo.xacro" />
+
+  <!-- ur3e -->
+  <xacro:include filename="$(find ur3_description)/urdf/ur3e/ur3e.urdf.xacro" />
+
+
+  <!-- arm -->
+  <xacro:ur3e_robot prefix="leftarm_" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+    wrist_3_lower_limit="${-2*pi}" wrist_3_upper_limit="${2*pi}"
+  />
+
+  <xacro:ur3e_robot prefix="rightarm_" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+    wrist_3_lower_limit="${-2*pi}" wrist_3_upper_limit="${2*pi}"
+  />
+
+  <!-- Include workspace -->
+  <xacro:include filename="$(find ur3e_dual_description)/urdf/ur3e_dual_flat_workspace.urdf.xacro" />
+
+  <joint name="world_to_workspace" type="fixed">
+    <parent link="world" />
+    <child link="workspace_table" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <link name="world" />
+
+  <joint name="world_leftarm_joint" type="fixed">
+    <parent link="world" />
+    <child link="leftarm_base_link" />
+    <origin xyz="0.5 0.45 1.0" rpy="0 0 ${-pi}" />
+  </joint>
+
+  <joint name="world_rightarm_joint" type="fixed">
+    <parent link="world" />
+    <child link = "rightarm_base_link" />
+    <origin xyz="0.5 -0.45 1.0" rpy="0 0 0" />
+  </joint>
+
+</robot>

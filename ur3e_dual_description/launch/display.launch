@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="gui" default="false" />
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find ur3e_dual_description)/urdf/dual_ur3e.urdf.xacro" />
+  
+  <param name="use_gui" value="$(arg gui)"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ur3e_dual_description)/config/dual_ur3e.rviz" required="true" />
+
+</launch>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find ur3e_dual_moveit_config)/config/dual_ur3e_controllers.yaml" command="load"/>
+
+  <!-- Load the controllers -->
+  <node name="robot_controllers" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen"
+        args="joint_state_controller leftarm_controller rightarm_controller rightarm_gripper_controller leftarm_gripper_controller"/>
+
+  <!-- TF -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" 
+        name="state_publisher"> 
+    <param name="publish_frequency"  type="double" value="500" />
+  </node>
+
+</launch>
