@@ -66,6 +66,4 @@
     <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
   </include>
 
-  <!-- <rosparam file="$(find ur3e_dual_moveit_config)/config/real_ros_controllers.yaml"/> -->
-
 </launch>
