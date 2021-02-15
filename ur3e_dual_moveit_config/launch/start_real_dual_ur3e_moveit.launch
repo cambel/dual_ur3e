@@ -50,7 +50,6 @@
     <arg name="fake_execution" value="false"/>
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
-    <arg name="real_robot" value="true"/>
   </include>  
   <!-- </group> -->
 

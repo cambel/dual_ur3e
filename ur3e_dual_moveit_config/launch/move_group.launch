@@ -18,7 +18,6 @@
   <arg name="max_safe_path_cost" default="1"/>
   <arg name="jiggle_fraction" default="0.05" />
   <arg name="publish_monitored_planning_scene" default="true"/>
-  <arg name="real_robot" default="false"/>
 
   <arg name="capabilities" default=""/>
   <arg name="disable_capabilities" default=""/>
@@ -79,8 +78,6 @@
     <param name="planning_scene_monitor/publish_state_updates" value="$(arg publish_monitored_planning_scene)" />
     <param name="planning_scene_monitor/publish_transforms_updates" value="$(arg publish_monitored_planning_scene)" />
 
-    <remap if="$(arg real_robot)" from="rightarm_controller/follow_joint_trajectory" to="right_arm/scaled_pos_joint_traj_controller/follow_joint_trajectory"/>
-    <remap if="$(arg real_robot)" from="leftarm_controller/follow_joint_trajectory" to="left_arm/scaled_pos_joint_traj_controller/follow_joint_trajectory"/>
   </node>
 
 </launch>
