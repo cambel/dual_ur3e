@@ -1,0 +1,238 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="ur_robot_gazebo">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="leftarm">
+        <chain base_link="leftarm_base_link" tip_link="leftarm_tool0" />
+    </group>
+    <group name="rightarm">
+        <chain base_link="rightarm_base_link" tip_link="rightarm_tool0" />
+    </group>
+    <group name="leftarm_hand">
+        <joint name="leftarm_wrist_3-flange" />
+        <joint name="leftarm_flange-tool0" />
+        <joint name="leftarm_kosmek_base_joint" />
+        <joint name="leftarm_SXRZ0030_MF4_link_joint" />
+        <joint name="leftarm_SXR0030_M_link_joint" />
+        <joint name="leftarm_SXR0030_TF4_joint" />
+        <joint name="leftarm_robotiq_coupler_joint" />
+        <joint name="leftarm_manipulator_dummy_joint" />
+        <joint name="leftarm_robotiq_hande_base_joint" />
+        <joint name="leftarm_hande_left_finger_joint" />
+    </group>
+    <group name="rightarm_hand">
+        <joint name="rightarm_wrist_3-flange" />
+        <joint name="rightarm_flange-tool0" />
+        <joint name="rightarm_kosmek_base_joint" />
+        <joint name="rightarm_SXRZ0030_MF4_link_joint" />
+        <joint name="rightarm_SXR0030_M_link_joint" />
+        <joint name="rightarm_SXR0030_TF4_joint" />
+        <joint name="rightarm_robotiq_coupler_joint" />
+        <joint name="rightarm_manipulator_dummy_joint" />
+        <joint name="rightarm_robotiq_hande_base_joint" />
+        <joint name="rightarm_hande_left_finger_joint" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="home" group="rightarm">
+        <joint name="rightarm_elbow_joint" value="-1.4186" />
+        <joint name="rightarm_shoulder_lift_joint" value="-1.211" />
+        <joint name="rightarm_shoulder_pan_joint" value="1.5353" />
+        <joint name="rightarm_wrist_1_joint" value="-0.546" />
+        <joint name="rightarm_wrist_2_joint" value="1.6476" />
+        <joint name="rightarm_wrist_3_joint" value="-0.0237" />
+    </group_state>
+    <group_state name="home" group="leftarm">
+        <joint name="leftarm_elbow_joint" value="-1.4186" />
+        <joint name="leftarm_shoulder_lift_joint" value="-1.211" />
+        <joint name="leftarm_shoulder_pan_joint" value="1.5353" />
+        <joint name="leftarm_wrist_1_joint" value="-0.546" />
+        <joint name="leftarm_wrist_2_joint" value="1.6476" />
+        <joint name="leftarm_wrist_3_joint" value="-0.0237" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="leftarm_hand" parent_link="leftarm_tool0" group="leftarm_hand" parent_group="leftarm" />
+    <end_effector name="rightarm_hand" parent_link="rightarm_tool0" group="rightarm_hand" parent_group="rightarm" />
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="virtual_joint" child_link="world" />
+    <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
+    <passive_joint name="leftarm_hande_left_finger_joint" />
+    <passive_joint name="rightarm_hande_left_finger_joint" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="leftarm_SXR0030_TF4_link" reason="Adjacent" />
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="leftarm_SXRZ0030_MF4_link" reason="Adjacent" />
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="leftarm_hand_e_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="leftarm_hande_left_finger" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="leftarm_hande_right_finger" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="leftarm_robotiq_coupler" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="leftarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="leftarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="leftarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="rightarm_base_link_inertia" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_M_link" link2="rightarm_shoulder_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_TF4_link" link2="leftarm_SXRZ0030_MF4_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_TF4_link" link2="leftarm_hand_e_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_TF4_link" link2="leftarm_hande_left_finger" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_TF4_link" link2="leftarm_hande_right_finger" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_TF4_link" link2="leftarm_robotiq_coupler" reason="Default" />
+    <disable_collisions link1="leftarm_SXR0030_TF4_link" link2="leftarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_TF4_link" link2="leftarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_TF4_link" link2="leftarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_TF4_link" link2="rightarm_base_link_inertia" reason="Never" />
+    <disable_collisions link1="leftarm_SXR0030_TF4_link" link2="rightarm_shoulder_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXRZ0030_MF4_link" link2="leftarm_hand_e_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXRZ0030_MF4_link" link2="leftarm_hande_left_finger" reason="Never" />
+    <disable_collisions link1="leftarm_SXRZ0030_MF4_link" link2="leftarm_hande_right_finger" reason="Never" />
+    <disable_collisions link1="leftarm_SXRZ0030_MF4_link" link2="leftarm_robotiq_coupler" reason="Adjacent" />
+    <disable_collisions link1="leftarm_SXRZ0030_MF4_link" link2="leftarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXRZ0030_MF4_link" link2="leftarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_SXRZ0030_MF4_link" link2="leftarm_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="leftarm_SXRZ0030_MF4_link" link2="rightarm_base_link_inertia" reason="Never" />
+    <disable_collisions link1="leftarm_SXRZ0030_MF4_link" link2="rightarm_shoulder_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="leftarm_shoulder_link" reason="Adjacent" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="leftarm_upper_arm_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="leftarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="leftarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_SXR0030_M_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_SXR0030_TF4_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_SXRZ0030_MF4_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_base_link_inertia" reason="Adjacent" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_forearm_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_robotiq_coupler" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_shoulder_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_upper_arm_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="rightarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="workspace_body" reason="Adjacent" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="workspace_camera_support" reason="Never" />
+    <disable_collisions link1="leftarm_base_link_inertia" link2="workspace_table" reason="Never" />
+    <disable_collisions link1="leftarm_forearm_link" link2="leftarm_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="leftarm_forearm_link" link2="leftarm_wrist_1_link" reason="Adjacent" />
+    <disable_collisions link1="leftarm_forearm_link" link2="rightarm_base_link_inertia" reason="Never" />
+    <disable_collisions link1="leftarm_forearm_link" link2="rightarm_shoulder_link" reason="Never" />
+    <disable_collisions link1="leftarm_forearm_link" link2="workspace_table" reason="Never" />
+    <disable_collisions link1="leftarm_hand_e_link" link2="leftarm_hande_left_finger" reason="Adjacent" />
+    <disable_collisions link1="leftarm_hand_e_link" link2="leftarm_hande_right_finger" reason="Adjacent" />
+    <disable_collisions link1="leftarm_hand_e_link" link2="leftarm_robotiq_coupler" reason="Adjacent" />
+    <disable_collisions link1="leftarm_hand_e_link" link2="leftarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_hand_e_link" link2="leftarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_hand_e_link" link2="leftarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="leftarm_hande_left_finger" link2="leftarm_robotiq_coupler" reason="Never" />
+    <disable_collisions link1="leftarm_hande_left_finger" link2="leftarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_hande_left_finger" link2="leftarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_hande_left_finger" link2="leftarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="leftarm_hande_left_finger" link2="workspace_camera_support" reason="Default" />
+    <disable_collisions link1="leftarm_hande_right_finger" link2="leftarm_robotiq_coupler" reason="Never" />
+    <disable_collisions link1="leftarm_hande_right_finger" link2="leftarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_hande_right_finger" link2="leftarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_hande_right_finger" link2="leftarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="leftarm_hande_right_finger" link2="workspace_camera_support" reason="Default" />
+    <disable_collisions link1="leftarm_robotiq_coupler" link2="leftarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_robotiq_coupler" link2="leftarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_robotiq_coupler" link2="leftarm_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="leftarm_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="leftarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="leftarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_SXR0030_M_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_SXR0030_TF4_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_SXRZ0030_MF4_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_base_link_inertia" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_forearm_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_robotiq_coupler" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_shoulder_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_upper_arm_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="rightarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="workspace_body" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="workspace_camera_support" reason="Never" />
+    <disable_collisions link1="leftarm_shoulder_link" link2="workspace_table" reason="Never" />
+    <disable_collisions link1="leftarm_upper_arm_link" link2="rightarm_base_link_inertia" reason="Never" />
+    <disable_collisions link1="leftarm_upper_arm_link" link2="rightarm_shoulder_link" reason="Never" />
+    <disable_collisions link1="leftarm_upper_arm_link" link2="rightarm_upper_arm_link" reason="Never" />
+    <disable_collisions link1="leftarm_upper_arm_link" link2="workspace_camera_support" reason="Never" />
+    <disable_collisions link1="leftarm_upper_arm_link" link2="workspace_table" reason="Never" />
+    <disable_collisions link1="leftarm_wrist_1_link" link2="leftarm_wrist_2_link" reason="Adjacent" />
+    <disable_collisions link1="leftarm_wrist_1_link" link2="leftarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="leftarm_wrist_1_link" link2="rightarm_base_link_inertia" reason="Never" />
+    <disable_collisions link1="leftarm_wrist_1_link" link2="rightarm_shoulder_link" reason="Never" />
+    <disable_collisions link1="leftarm_wrist_1_link" link2="workspace_table" reason="Never" />
+    <disable_collisions link1="leftarm_wrist_2_link" link2="leftarm_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="leftarm_wrist_2_link" link2="rightarm_base_link_inertia" reason="Never" />
+    <disable_collisions link1="leftarm_wrist_2_link" link2="rightarm_shoulder_link" reason="Never" />
+    <disable_collisions link1="leftarm_wrist_3_link" link2="rightarm_base_link_inertia" reason="Never" />
+    <disable_collisions link1="leftarm_wrist_3_link" link2="rightarm_shoulder_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_M_link" link2="rightarm_SXR0030_TF4_link" reason="Adjacent" />
+    <disable_collisions link1="rightarm_SXR0030_M_link" link2="rightarm_SXRZ0030_MF4_link" reason="Adjacent" />
+    <disable_collisions link1="rightarm_SXR0030_M_link" link2="rightarm_hand_e_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_M_link" link2="rightarm_hande_left_finger" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_M_link" link2="rightarm_hande_right_finger" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_M_link" link2="rightarm_robotiq_coupler" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_M_link" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_M_link" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_M_link" link2="rightarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_TF4_link" link2="rightarm_SXRZ0030_MF4_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_TF4_link" link2="rightarm_hand_e_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_TF4_link" link2="rightarm_hande_left_finger" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_TF4_link" link2="rightarm_hande_right_finger" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_TF4_link" link2="rightarm_robotiq_coupler" reason="Default" />
+    <disable_collisions link1="rightarm_SXR0030_TF4_link" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_TF4_link" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXR0030_TF4_link" link2="rightarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXRZ0030_MF4_link" link2="rightarm_hand_e_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXRZ0030_MF4_link" link2="rightarm_hande_left_finger" reason="Never" />
+    <disable_collisions link1="rightarm_SXRZ0030_MF4_link" link2="rightarm_hande_right_finger" reason="Never" />
+    <disable_collisions link1="rightarm_SXRZ0030_MF4_link" link2="rightarm_robotiq_coupler" reason="Adjacent" />
+    <disable_collisions link1="rightarm_SXRZ0030_MF4_link" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXRZ0030_MF4_link" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="rightarm_SXRZ0030_MF4_link" link2="rightarm_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="rightarm_base_link_inertia" link2="rightarm_shoulder_link" reason="Adjacent" />
+    <disable_collisions link1="rightarm_base_link_inertia" link2="rightarm_upper_arm_link" reason="Never" />
+    <disable_collisions link1="rightarm_base_link_inertia" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="rightarm_base_link_inertia" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="rightarm_base_link_inertia" link2="workspace_body" reason="Adjacent" />
+    <disable_collisions link1="rightarm_base_link_inertia" link2="workspace_camera_support" reason="Never" />
+    <disable_collisions link1="rightarm_base_link_inertia" link2="workspace_table" reason="Never" />
+    <disable_collisions link1="rightarm_forearm_link" link2="rightarm_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="rightarm_forearm_link" link2="rightarm_wrist_1_link" reason="Adjacent" />
+    <disable_collisions link1="rightarm_forearm_link" link2="workspace_table" reason="Never" />
+    <disable_collisions link1="rightarm_hand_e_link" link2="rightarm_hande_left_finger" reason="Adjacent" />
+    <disable_collisions link1="rightarm_hand_e_link" link2="rightarm_hande_right_finger" reason="Adjacent" />
+    <disable_collisions link1="rightarm_hand_e_link" link2="rightarm_robotiq_coupler" reason="Adjacent" />
+    <disable_collisions link1="rightarm_hand_e_link" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="rightarm_hand_e_link" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="rightarm_hand_e_link" link2="rightarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="rightarm_hande_left_finger" link2="rightarm_robotiq_coupler" reason="Never" />
+    <disable_collisions link1="rightarm_hande_left_finger" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="rightarm_hande_left_finger" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="rightarm_hande_left_finger" link2="rightarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="rightarm_hande_right_finger" link2="rightarm_robotiq_coupler" reason="Never" />
+    <disable_collisions link1="rightarm_hande_right_finger" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="rightarm_hande_right_finger" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="rightarm_hande_right_finger" link2="rightarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="rightarm_robotiq_coupler" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="rightarm_robotiq_coupler" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="rightarm_robotiq_coupler" link2="rightarm_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="rightarm_shoulder_link" link2="rightarm_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="rightarm_shoulder_link" link2="rightarm_wrist_1_link" reason="Never" />
+    <disable_collisions link1="rightarm_shoulder_link" link2="rightarm_wrist_2_link" reason="Never" />
+    <disable_collisions link1="rightarm_shoulder_link" link2="workspace_body" reason="Never" />
+    <disable_collisions link1="rightarm_shoulder_link" link2="workspace_camera_support" reason="Never" />
+    <disable_collisions link1="rightarm_shoulder_link" link2="workspace_table" reason="Never" />
+    <disable_collisions link1="rightarm_upper_arm_link" link2="workspace_camera_support" reason="Never" />
+    <disable_collisions link1="rightarm_upper_arm_link" link2="workspace_table" reason="Never" />
+    <disable_collisions link1="rightarm_wrist_1_link" link2="rightarm_wrist_2_link" reason="Adjacent" />
+    <disable_collisions link1="rightarm_wrist_1_link" link2="rightarm_wrist_3_link" reason="Never" />
+    <disable_collisions link1="rightarm_wrist_1_link" link2="workspace_table" reason="Never" />
+    <disable_collisions link1="rightarm_wrist_2_link" link2="rightarm_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="workspace_body" link2="workspace_camera_support" reason="Adjacent" />
+    <disable_collisions link1="workspace_body" link2="workspace_table" reason="Adjacent" />
+    <disable_collisions link1="workspace_camera_support" link2="workspace_table" reason="Never" />
+</robot>

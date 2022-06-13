@@ -6,14 +6,15 @@
   <arg name="robot_description" default="robot_description"/>
 
   <!-- Load universal robot description format (URDF) -->
-  <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro '$(find ur3e_dual_description)/urdf/dual_ur3e.urdf.xacro'"/>
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro joint_limit_params:='$(find ur3e_dual_description)/config/joint_limits.yaml' kinematics_params:='$(find ur_description)/config/ur3e/default_kinematics.yaml' physical_params:='$(find ur_description)/config/ur3e/physical_parameters.yaml' visual_params:='$(find ur_description)/config/ur3e/visual_parameters.yaml' transmission_hw_interface:=hardware_interface/PositionJointInterface safety_limits:=false safety_pos_margin:=0.15 safety_k_position:=20 dual_arm:=true grasp_plugin:=false '$(find ur3e_dual_gazebo)/urdf/dual_ur_gripper_hande.xacro'"/>
 
   <!-- The semantic description that corresponds to the URDF -->
-  <param name="$(arg robot_description)_semantic" textfile="$(find ur3e_dual_moveit_config)/config/ur3e.srdf" />
+  <param name="$(arg robot_description)_semantic" textfile="$(find ur3e_dual_moveit_config)/config/ur_robot_gazebo.srdf" />
 
   <!-- Load updated joint limits (override information from URDF) -->
   <group ns="$(arg robot_description)_planning">
     <rosparam command="load" file="$(find ur3e_dual_moveit_config)/config/joint_limits.yaml"/>
+    <rosparam command="load" file="$(find ur3e_dual_moveit_config)/config/cartesian_limits.yaml"/>
   </group>
 
   <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->

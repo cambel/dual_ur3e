@@ -1,11 +1,11 @@
 moveit_setup_assistant_config:
   URDF:
-    package: ur3e_dual_description
-    relative_path: urdf/dual_ur3e.urdf.xacro
-    xacro_args: ""
+    package: ur3e_dual_gazebo
+    relative_path: urdf/dual_ur_gripper_hande.xacro
+    xacro_args: joint_limit_params:='/root/ros_ws/src/trufus/ur3e_dual_description/config/joint_limits.yaml' kinematics_params:='/root/ros_ws/src/universal_robot/ur_description/config/ur3e/default_kinematics.yaml' physical_params:='/root/ros_ws/src/universal_robot/ur_description/config/ur3e/physical_parameters.yaml' visual_params:='/root/ros_ws/src/universal_robot/ur_description/config/ur3e/visual_parameters.yaml' transmission_hw_interface:=hardware_interface/PositionJointInterface safety_limits:=false safety_pos_margin:=0.15 safety_k_position:=20 dual_arm:=true grasp_plugin:=false
   SRDF:
-    relative_path: config/ur3e.srdf
+    relative_path: config/ur_robot_gazebo.srdf
   CONFIG:
-    author_name: Cristian Beltran
+    author_name: Cristian C. Beltran-Hernandez
     author_email: cristianbehe@gmail.com
-    generated_timestamp: 1612342153
+    generated_timestamp: 1633402368

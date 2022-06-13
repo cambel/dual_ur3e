@@ -2,7 +2,7 @@
 <launch>
   <arg name="paused" default="false"/>
   <arg name="gazebo_gui" default="true"/>
-  <arg name="urdf_path" default="$(find ur3e_dual_description)/urdf/dual_ur3e.urdf.xacro"/>
+  <arg name="urdf_path" default="$(find ur3e_dual_gazebo)/urdf/dual_ur_gripper_hande.xacro"/>
 
   <!-- startup simulated world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">

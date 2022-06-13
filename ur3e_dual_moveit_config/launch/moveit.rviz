@@ -1,16 +1,13 @@
 Panels:
   - Class: rviz/Displays
-    Help Height: 138
+    Help Height: 84
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /Global Options1
         - /MotionPlanning1
-        - /MotionPlanning1/Scene Robot1
-        - /MotionPlanning1/Planning Request1
-        - /TF1/Frames1
-      Splitter Ratio: 0.5625
-    Tree Height: 968
+        - /MotionPlanning1/Planned Path1
+      Splitter Ratio: 0.7425600290298462
+    Tree Height: 441
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -47,12 +44,12 @@ Visualization Manager:
       Class: moveit_rviz_plugin/MotionPlanning
       Enabled: true
       Move Group Namespace: ""
-      MoveIt_Allow_Approximate_IK: true
+      MoveIt_Allow_Approximate_IK: false
       MoveIt_Allow_External_Program: false
-      MoveIt_Allow_Replanning: true
+      MoveIt_Allow_Replanning: false
       MoveIt_Allow_Sensor_Positioning: false
-      MoveIt_Planning_Attempts: 20
-      MoveIt_Planning_Time: 10
+      MoveIt_Planning_Attempts: 10
+      MoveIt_Planning_Time: 5
       MoveIt_Use_Cartesian_Path: false
       MoveIt_Use_Constraint_Aware_IK: true
       MoveIt_Warehouse_Host: 127.0.0.1
@@ -76,6 +73,21 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
+          leftarm_SXR0030_M_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          leftarm_SXR0030_TF4_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          leftarm_SXRZ0030_MF4_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           leftarm_base:
             Alpha: 1
             Show Axes: false
@@ -84,17 +96,24 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          leftarm_ee_link:
+          leftarm_base_link_inertia:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          leftarm_flange:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           leftarm_forearm_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          leftarm_gripper_tip_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           leftarm_hand_e_link:
             Alpha: 1
             Show Axes: false
@@ -110,15 +129,15 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          leftarm_kosmek_exchanger_base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           leftarm_robotiq_coupler:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          leftarm_robotiq_hande_tip_link_joint:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           leftarm_shoulder_link:
             Alpha: 1
             Show Axes: false
@@ -171,17 +190,24 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          rightarm_ee_link:
+          rightarm_base_link_inertia:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          rightarm_flange:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           rightarm_forearm_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          rightarm_gripper_tip_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           rightarm_hand_e_link:
             Alpha: 1
             Show Axes: false
@@ -206,10 +232,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          rightarm_robotiq_hande_tip_link_joint:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           rightarm_shoulder_link:
             Alpha: 1
             Show Axes: false
@@ -244,12 +266,12 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          workspace_table:
+          workspace_camera_support:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          workspace_tool_holder:
+          workspace_table:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -262,7 +284,7 @@ Visualization Manager:
         Robot Alpha: 0.5
         Robot Color: 150; 50; 150
         Show Robot Collision: false
-        Show Robot Visual: false
+        Show Robot Visual: true
         Show Trail: false
         State Display Time: 0.05 s
         Trail Step Size: 1
@@ -278,7 +300,7 @@ Visualization Manager:
         Colliding Link Color: 255; 0; 0
         Goal State Alpha: 1
         Goal State Color: 250; 128; 0
-        Interactive Marker Size: 0.20000000298023224
+        Interactive Marker Size: 0
         Joint Violation Color: 255; 0; 255
         Planning Group: leftarm
         Query Goal State: true
@@ -303,6 +325,21 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
+          leftarm_SXR0030_M_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          leftarm_SXR0030_TF4_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          leftarm_SXRZ0030_MF4_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           leftarm_base:
             Alpha: 1
             Show Axes: false
@@ -311,17 +348,24 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          leftarm_ee_link:
+          leftarm_base_link_inertia:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          leftarm_flange:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           leftarm_forearm_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          leftarm_gripper_tip_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           leftarm_hand_e_link:
             Alpha: 1
             Show Axes: false
@@ -337,15 +381,15 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          leftarm_kosmek_exchanger_base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           leftarm_robotiq_coupler:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          leftarm_robotiq_hande_tip_link_joint:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           leftarm_shoulder_link:
             Alpha: 1
             Show Axes: false
@@ -398,17 +442,24 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-            Value: true
-          rightarm_ee_link:
+          rightarm_base_link_inertia:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          rightarm_flange:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           rightarm_forearm_link:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          rightarm_gripper_tip_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           rightarm_hand_e_link:
             Alpha: 1
             Show Axes: false
@@ -433,10 +484,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          rightarm_robotiq_hande_tip_link_joint:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           rightarm_shoulder_link:
             Alpha: 1
             Show Axes: false
@@ -471,12 +518,12 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          workspace_table:
+          workspace_camera_support:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          workspace_tool_holder:
+          workspace_table:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -485,28 +532,14 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-        Robot Alpha: 1
+        Robot Alpha: 0.5
         Show Robot Collision: false
         Show Robot Visual: true
       Value: true
       Velocity_Scaling_Factor: 1
-    - Class: rviz/TF
-      Enabled: false
-      Frame Timeout: 15
-      Frames:
-        All Enabled: false
-      Marker Scale: 0.30000001192092896
-      Name: TF
-      Show Arrows: true
-      Show Axes: true
-      Show Names: true
-      Tree:
-        {}
-      Update Interval: 0
-      Value: false
   Enabled: true
   Global Options:
-    Background Color: 200; 200; 200
+    Background Color: 48; 48; 48
     Default Light: true
     Fixed Frame: world
     Frame Rate: 30
@@ -519,31 +552,31 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Class: rviz/Orbit
-      Distance: 2.139256715774536
+      Class: rviz/XYOrbit
+      Distance: 2.996500015258789
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.7514877319335938
-        Y: 0.24936853349208832
-        Z: 1.0699599981307983
-      Focal Shape Fixed Size: false
+        X: 0.11356700211763382
+        Y: 0.10592000186443329
+        Z: 2.2351800055275817e-7
+      Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5597973465919495
+      Pitch: 0.5397969484329224
       Target Frame: world
-      Value: Orbit (rviz)
-      Yaw: 0.10543316602706909
+      Value: XYOrbit (rviz)
+      Yaw: 0.061769068241119385
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 2032
+  Height: 1052
   Help:
     collapsed: false
   Hide Left Dock: false
@@ -552,9 +585,9 @@ Window Geometry:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd00000001000000000000036a0000075efc0200000007fb000000100044006900730070006c0061007900730100000069000004b60000017800fffffffb0000000800480065006c00700000000342000000bb000000cf00fffffffb0000000a0056006900650077007300000001bc000000b00000012300fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000007000fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000052b0000029c0000028b00ffffff00000afa0000075e00000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000002a2000003c6fc0200000007fb000000100044006900730070006c006100790073010000003b00000248000000c700fffffffb0000000800480065006c00700000000342000000bb0000006e00fffffffb0000000a0056006900650077007300000003b0000000b0000000a000fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000289000001780000016a00ffffff000004d8000003c600000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: false
-  Width: 3696
-  X: 144
-  Y: 54
+  Width: 1920
+  X: 0
+  Y: 0

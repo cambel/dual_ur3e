@@ -1,5 +1,6 @@
 controller_list:
   - name: fake_leftarm_controller
+    type: $(arg execution_type)
     joints:
       - leftarm_shoulder_pan_joint
       - leftarm_shoulder_lift_joint
@@ -8,6 +9,7 @@ controller_list:
       - leftarm_wrist_2_joint
       - leftarm_wrist_3_joint
   - name: fake_rightarm_controller
+    type: $(arg execution_type)
     joints:
       - rightarm_shoulder_pan_joint
       - rightarm_shoulder_lift_joint
@@ -15,12 +17,16 @@ controller_list:
       - rightarm_wrist_1_joint
       - rightarm_wrist_2_joint
       - rightarm_wrist_3_joint
-  - name: fake_leftarm_ee_controller
+  - name: fake_leftarm_hand_controller
+    type: $(arg execution_type)
     joints:
-      []
-  - name: fake_rightarm_ee_controller
+      - leftarm_hande_left_finger_joint
+  - name: fake_rightarm_hand_controller
+    type: $(arg execution_type)
     joints:
-      []
+      - rightarm_hande_left_finger_joint
 initial:  # Define initial robot poses.
-#  - group: leftarm
-#    pose: home
+  - group: rightarm
+    pose: home
+  - group: leftarm
+    pose: home

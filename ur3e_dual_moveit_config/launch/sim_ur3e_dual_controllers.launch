@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="use_gui" default="false" />
+
+
+  <!-- Load the controllers -->
+  <group ns="left_arm">
+    <arg name="prefix" default="leftarm_" />
+    <rosparam file="$(find ur3e_dual_control)/config/ur3e_controllers.yaml" command="load" subst_value="true"/>
+    <node name="robot_controllers" pkg="controller_manager" type="spawner" respawn="false"
+          output="screen"
+          args="scaled_pos_joint_traj_controller gripper_controller"/>
+  </group>
+
+  <group ns="right_arm">
+    <arg name="prefix" default="rightarm_" />
+    <rosparam file="$(find ur3e_dual_control)/config/ur3e_controllers.yaml" command="load" subst_value="true"/>
+    <node name="robot_controllers" pkg="controller_manager" type="spawner" respawn="false"
+          output="screen"
+          args="scaled_pos_joint_traj_controller gripper_controller"/>
+  </group>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="$(arg use_gui)"/>
+    <rosparam param="source_list" subst_value="True">[/right_arm/joint_states,/left_arm/joint_states]</rosparam>
+  </node>
+  <!-- TF -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" 
+        name="state_publisher"> 
+    <param name="publish_frequency"  type="double" value="500" />
+  </node>
+
+</launch>

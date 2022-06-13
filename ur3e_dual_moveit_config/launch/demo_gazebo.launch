@@ -25,7 +25,7 @@
   <arg name="gazebo_gui" default="true"/>
   <arg name="paused" default="false"/>
   <!-- By default, use the urdf location provided from the package -->
-  <arg name="urdf_path" default="$(find ur3e_dual_description)/urdf/dual_ur3e.urdf.xacro"/>
+  <arg name="urdf_path" default="$(find ur3e_dual_gazebo)/urdf/dual_ur_gripper_hande.xacro"/>
 
   <!-- launch the gazebo simulator and spawn the robot -->
   <include file="$(find ur3e_dual_moveit_config)/launch/gazebo.launch" >
@@ -57,7 +57,7 @@
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
     <arg name="load_robot_description" value="$(arg load_robot_description)"/>
-  </include>  
+  </include>
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
   <include file="$(find ur3e_dual_moveit_config)/launch/moveit_rviz.launch">

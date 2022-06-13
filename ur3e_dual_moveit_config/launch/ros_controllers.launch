@@ -9,10 +9,4 @@
         output="screen"
         args="joint_state_controller leftarm_controller rightarm_controller rightarm_gripper_controller leftarm_gripper_controller"/>
 
-  <!-- TF -->
-  <node pkg="robot_state_publisher" type="robot_state_publisher" 
-        name="state_publisher"> 
-    <param name="publish_frequency"  type="double" value="500" />
-  </node>
-
 </launch>
