@@ -15,22 +15,13 @@
 
 
   <!-- arm -->
-  <xacro:ur3e_robot prefix="leftarm_" joint_limited="true"
+  <xacro:ur3e_robot prefix="" joint_limited="true"
     shoulder_pan_lower_limit="${0}" shoulder_pan_upper_limit="${2*pi}"
     shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
     elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
     wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
     wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
     wrist_3_lower_limit="${-2*pi}" wrist_3_upper_limit="${2*pi}"
-  />
-
-  <xacro:ur3e_robot prefix="rightarm_" joint_limited="true"
-    shoulder_pan_lower_limit="${0}" shoulder_pan_upper_limit="${2*pi}"
-    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
-    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
-    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
-    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
-    wrist_3_lower_limit="${-10*pi}" wrist_3_upper_limit="${10*pi}"
   />
 
   <!-- Include workspace -->
@@ -44,22 +35,16 @@
 
   <link name="world" />
 
-  <joint name="world_leftarm_joint" type="fixed">
+  <joint name="world_joint" type="fixed">
     <parent link="world" />
-    <child link="leftarm_base_link" />
+    <child link="base_link" />
     <origin xyz="0.365 0.345 1.330" rpy="1.5707 0.0 1.5707" />
   </joint>
 
-  <joint name="world_rightarm_joint" type="fixed">
-    <parent link="world" />
-    <child link = "rightarm_base_link" />
-    <origin xyz="0.365 -0.345 1.330" rpy="1.5707 0.0 1.5707" />
-  </joint>
 
   <!-- spawn and attach dual robotiq 85 grippers (two different macros are used because different tool frames are defined inside) -->
   <xacro:include filename="$(find ur3e_dual_description)/urdf/robotiq_hande_gripper_manual_exchanger.urdf.xacro" />
   <!-- <xacro:include filename="$(find ur3e_dual_description)/urdf/robotiq_hande_gripper.urdf.xacro" /> -->
-  <xacro:robotiq_hande_gripper_adapter_manual_exchanger prefix="leftarm_" parent = "leftarm_ee_link" ft_prefix="leftarm"/>
-  <xacro:robotiq_hande_gripper_adapter_manual_exchanger prefix="rightarm_" parent = "rightarm_ee_link" ft_prefix="rightarm"/>
+  <xacro:robotiq_hande_gripper_adapter_manual_exchanger prefix="" parent = "ee_link" ft_prefix=""/>
 
 </robot>

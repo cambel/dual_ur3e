@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Export env variable so that gazebo finds our models -->
+  <env name="GAZEBO_MODEL_PATH"
+       value="$(find ur3e_dual_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)" />
+  <!-- Ignore online database -->
+  <env name="GAZEBO_MODEL_DATABASE_URI"
+       value="/" />
+    
+  <param name="use_real_robot" type="bool" value="false" />
+
+  <!-- Launch file parameters -->
+  <arg name="paused"     default="true"/>
+  <arg name="debug"      default="false"/>
+  <arg name="gui"        default="true"/>
+  <arg name="rate"       default="500" />
+  <arg name="world_name" default="$(find ur3e_dual_gazebo)/worlds/dual_ur3e.world" />
+  <arg name="effort_interface" default="false"/>
+  <arg name="grasp_plugin" default="false"/>
+  <arg name="dual_arm" default="true"/>
+
+  <!-- Start up simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/>
+    <arg name="paused"     value="$(arg paused)"/>
+    <arg name="debug"      value="$(arg debug)"/>
+    <arg name="gui"        value="$(arg gui)"/>
+  </include>
+
+  <!--Robot description and related parameter files -->
+  <arg name="robot_description_file" default="$(dirname)/inc/load_ur_gripper_hande.launch.xml" 
+                                     doc="Launch file which populates the 'robot_description' parameter."/>
+  <arg name="ur_robot" default="ur3e"/>
+
+  <!-- Load urdf on the parameter server -->
+  <include file="$(arg robot_description_file)">
+    <arg name="ur_robot" value="$(arg ur_robot)"/>
+    <arg name="grasp_plugin" value="$(arg grasp_plugin)"/>
+    <arg name="dual_arm" value="$(arg dual_arm)"/>
+    <arg name="joint_limit_params" value="$(find ur3e_dual_description)/config/joint_limits.yaml"/>
+  </include>
+
+  <!-- Spawn robot in gazebo (and move it upwards):
+      better initial values should be -2.355 and 1.57 but the robot does
+      something strange when unpausing it
+  -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model"
+        args="-urdf -param robot_description -model robot
+              -J rightarm_shoulder_pan_joint 1.5353
+              -J rightarm_shoulder_lift_joint -1.211
+              -J rightarm_elbow_joint -1.4186
+              -J rightarm_wrist_1_joint -0.546
+              -J rightarm_wrist_2_joint 1.6476
+              -J rightarm_wrist_3_joint -0.0237
+              -J leftarm_shoulder_pan_joint 1.5353
+              -J leftarm_shoulder_lift_joint -1.211
+              -J leftarm_elbow_joint -1.4186
+              -J leftarm_wrist_1_joint -0.546
+              -J leftarm_wrist_2_joint 1.6476
+              -J leftarm_wrist_3_joint -0.0237
+              -unpause"
+          output="screen" />
+
+  <rosparam file="$(find ur3e_dual_gazebo)/config/ur3e_controllers.yaml" command="load"/>
+
+  <!-- Load the controllers -->
+  <node name="robot_controllers" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen"
+        args="joint_state_controller leftarm/scaled_pos_joint_traj_controller leftarm/gripper_controller
+                                     rightarm/scaled_pos_joint_traj_controller rightarm/gripper_controller"/>
+
+  <!-- TF -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" 
+        name="state_publisher_right_arm" args="--namespace=rightarm"> 
+    <param name="publish_frequency"  type="double" value="500" />
+  </node>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" 
+        name="state_publisher_left_arm" args="--namespace=leftarm"> 
+    <param name="publish_frequency"  type="double" value="500" />
+  </node>
+
+</launch>

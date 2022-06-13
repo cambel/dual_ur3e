@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur_robot_gazebo">
+
+  <xacro:include filename="$(find ur3e_dual_gazebo)/urdf/ur_gripper_hande.xacro"/>
+
+  <!--Declare arguments -->
+  <xacro:arg name="joint_limit_params" default=""/>
+  <xacro:arg name="physical_params" default=""/>
+  <xacro:arg name="kinematics_params" default=""/>
+  <xacro:arg name="visual_params" default=""/>
+  <xacro:arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+  <xacro:arg name="safety_limits" default="false"/>
+  <xacro:arg name="safety_pos_margin" default="0.15"/>
+  <xacro:arg name="safety_k_position" default="20"/>
+  <xacro:arg name="dual_arm" default="true"/>
+
+  <!-- Include workspace -->
+  <xacro:include filename="$(find ur3e_dual_description)/urdf/ur3e_dual_workspace.urdf.xacro" />
+
+  <link name="world"/>
+  <joint name="world_to_workspace" type="fixed">
+    <parent link="world" />
+    <child link="workspace_body" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+
+  <xacro:if value="$(arg dual_arm)">
+
+      <xacro:ur_gripper_hande
+        prefix="leftarm_"
+        ft_prefix="leftarm"
+        parent="world"
+        joint_limits_parameters_file="$(arg joint_limit_params)"
+        kinematics_parameters_file="$(arg kinematics_params)"
+        physical_parameters_file="$(arg physical_params)"
+        visual_parameters_file="$(arg visual_params)"
+        transmission_hw_interface="$(arg transmission_hw_interface)"
+        safety_limits="$(arg safety_limits)"
+        safety_pos_margin="$(arg safety_pos_margin)"
+        safety_k_position="$(arg safety_k_position)"
+      >
+        <origin xyz="0.365 -0.345 1.330" rpy="1.5707 0.0 1.5707" />
+      
+      </xacro:ur_gripper_hande>
+
+      <xacro:ur_gripper_hande
+        prefix="rightarm_"
+        ft_prefix="rightarm"
+        parent="world"
+        joint_limits_parameters_file="$(arg joint_limit_params)"
+        kinematics_parameters_file="$(arg kinematics_params)"
+        physical_parameters_file="$(arg physical_params)"
+        visual_parameters_file="$(arg visual_params)"
+        transmission_hw_interface="$(arg transmission_hw_interface)"
+        safety_limits="$(arg safety_limits)"
+        safety_pos_margin="$(arg safety_pos_margin)"
+        safety_k_position="$(arg safety_k_position)"
+      >
+        <origin xyz="0.365 0.345 1.330" rpy="1.5707 0.0 1.5707" />
+      </xacro:ur_gripper_hande>
+
+  </xacro:if>
+
+  <xacro:unless value="$(arg dual_arm)">
+
+      <xacro:ur_gripper_hande
+        prefix=""
+        ft_prefix=""
+        parent="world"
+        joint_limits_parameters_file="$(arg joint_limit_params)"
+        kinematics_parameters_file="$(arg kinematics_params)"
+        physical_parameters_file="$(arg physical_params)"
+        visual_parameters_file="$(arg visual_params)"
+        transmission_hw_interface="$(arg transmission_hw_interface)"
+        safety_limits="$(arg safety_limits)"
+        safety_pos_margin="$(arg safety_pos_margin)"
+        safety_k_position="$(arg safety_k_position)"
+      >
+        <origin xyz="0.365 0.345 1.330" rpy="1.5707 0.0 1.5707" />
+      </xacro:ur_gripper_hande>
+
+  </xacro:unless>
+
+    <!--
+      Inject Gazebo ROS Control plugin, which allows us to use ros_control
+      controllers to control the virtual robot hw.
+    -->
+    <gazebo>
+      <plugin name="ros_control" filename="libgazebo_ros_control.so">
+        <!--robotNamespace>/</robotNamespace-->
+        <!--robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType-->
+      </plugin>
+    </gazebo>
+
+</robot>

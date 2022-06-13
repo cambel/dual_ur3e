@@ -4,9 +4,9 @@
 
   <world name="ur3e_dual">
     
-    <gui fullscreen='0'>
+    <gui>
       <camera name='user_camera'>
-        <pose frame=''>3.78503 0.53987 2.42147 0 0.446 -3.04238</pose>
+        <pose frame=''>0.216037 1.43444 1.52721 -0 0.253999 -1.4544</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
@@ -15,13 +15,17 @@
     <gravity>0 0 -9.81</gravity>
 
     <physics name="default_physics" default="0" type="ode">
-      <max_step_size>0.0005</max_step_size>
+      <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
-      <real_time_update_rate>2000</real_time_update_rate>
+      <real_time_update_rate>1000</real_time_update_rate>
     </physics>
 
+    <!-- A gazebo links attacher -->
+    <plugin name="ros_link_attacher_plugin" filename="libgazebo_ros_link_attacher.so"/>
+    <!-- <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so"/> -->
+
     <scene>
-      <ambient>0.6 0.6 0.6 1</ambient>
+      <ambient>0.5 0.5 0.5 1</ambient>
       <background>0.9 0.9 0.95 1</background>
       <shadows>1</shadows>
     </scene>

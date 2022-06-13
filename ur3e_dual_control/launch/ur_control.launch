@@ -42,7 +42,7 @@
     <param name="headless_mode" value="$(arg headless_mode)"/>
     <param name="tf_prefix" value="$(arg tf_prefix)"/>
     <param name="use_tool_communication" value="$(arg use_tool_communication)"/>
-    <param name="wrench_frame_id" value="$(arg wrench_frame_id)"/>
+    <!-- <param name="wrench_frame_id" value="$(arg wrench_frame_id)"/> -->
     <!--<param name="reverse_port" type="int" value="$(arg reverse_port)" />-->
     <param name="tool_voltage" value="$(arg tool_voltage)"/>
     <param name="tool_parity" value="$(arg tool_parity)"/>

@@ -1,0 +1,152 @@
+# Joint state controller
+joint_state_controller:
+  publish_rate: 500
+  type: joint_state_controller/JointStateController
+
+### LEFT ARM ###
+leftarm/scaled_pos_joint_traj_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - leftarm_shoulder_pan_joint
+     - leftarm_shoulder_lift_joint
+     - leftarm_elbow_joint
+     - leftarm_wrist_1_joint
+     - leftarm_wrist_2_joint
+     - leftarm_wrist_3_joint
+  constraints:
+    # Default is 0
+    goal_time: 0.1
+    # Default is 0.01, but is 0 for due to the movegroup/follow_joint_trajectory/goal tolerance is empty
+    stopped_velocity_tolerance: 0
+    leftarm_shoulder_pan_joint:
+      trajectory: 0
+      goal: 0.01
+    leftarm_shoulder_lift_joint:
+      trajectory: 0
+      goal: 0.01
+    leftarm_elbow_joint:
+      trajectory: 0
+      goal: 0.01
+    leftarm_wrist_1_joint:
+      trajectory: 0
+      goal: 0.01
+    leftarm_wrist_2_joint:
+      trajectory: 0
+      goal: 0.01
+    leftarm_wrist_3_joint:
+      trajectory: 0
+      goal: 0.01
+
+# gazebo_ros_control:
+#   pid_gains:
+#     leftarm_shoulder_pan_joint:  {p: 10.0, i: -0.0, d: 0.10}
+#     leftarm_shoulder_lift_joint: {p: 10.0, i: -0.0, d: 0.10}
+#     leftarm_elbow_joint:         {p: 10.0, i: -0.0, d: 0.10}
+#     leftarm_wrist_1_joint:       {p: 10.5, i: -0.0, d: 0.10}
+#     leftarm_wrist_2_joint:       {p: 10.5, i: -0.0, d: 0.10}
+#     leftarm_wrist_3_joint:       {p: 10.5, i: -0.0, d: 0.10}
+#     leftarm_hande_right_finger_joint: {p: 10.1, i: -0.0, d: 0.10}
+#     rightarm_shoulder_pan_joint:  {p: 10.0, i: -0.0, d: 0.10}
+#     rightarm_shoulder_lift_joint: {p: 10.0, i: -0.0, d: 0.10}
+#     rightarm_elbow_joint:         {p: 10.0, i: -0.0, d: 0.10}
+#     rightarm_wrist_1_joint:       {p: 10.0, i: -0.0, d: 0.10}
+#     rightarm_wrist_2_joint:       {p: 10.0, i: -0.0, d: 0.10}
+#     rightarm_wrist_3_joint:       {p: 10.0, i: -0.0, d: 0.10}
+#     rightarm_hande_right_finger_joint: {p: 10.0, i: -0.0, d: 0.10}
+
+#Position controller
+leftarm_shoulder_pan_joint:
+  type: position_controllers/JointPositionController
+  joint: leftarm_shoulder_pan_joint
+leftarm_shoulder_lift_joint:
+  type: position_controllers/JointPositionController
+  joint: leftarm_shoulder_lift_joint
+leftarm_elbow_joint:
+  type: position_controllers/JointPositionController
+  joint: leftarm_elbow_joint
+leftarm_wrist_1_joint:
+  type: position_controllers/JointPositionController
+  joint: leftarm_wrist_1_joint
+leftarm_wrist_2_joint:
+  type: position_controllers/JointPositionController
+  joint: leftarm_wrist_2_joint
+leftarm_wrist_3_joint:
+  type: position_controllers/JointPositionController
+  joint: leftarm_wrist_3_joint
+
+leftarm/gripper_controller:
+  # Define the type of gripper to config on "ur_control/controllers.py > GripperController"
+  gripper_type: 'hand-e'
+  type: position_controllers/GripperActionController
+  joint: leftarm_hande_left_finger_joint
+  action_monitor_rate: 20
+  goal_tolerance: 0.002
+  max_effort: 100
+  stall_velocity_threshold: 0.001
+  stall_timeout: 1.0
+
+### RIGHT ARM ###
+
+rightarm/scaled_pos_joint_traj_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - rightarm_shoulder_pan_joint
+     - rightarm_shoulder_lift_joint
+     - rightarm_elbow_joint
+     - rightarm_wrist_1_joint
+     - rightarm_wrist_2_joint
+     - rightarm_wrist_3_joint
+  constraints:
+    # Default is 0
+    goal_time: 0.1
+    # Default is 0.01, but is 0 for due to the movegroup/follow_joint_trajectory/goal tolerance is empty
+    stopped_velocity_tolerance: 0
+    rightarm_shoulder_pan_joint:
+      trajectory: 0
+      goal: 0.01
+    rightarm_shoulder_lift_joint:
+      trajectory: 0
+      goal: 0.01
+    rightarm_elbow_joint:
+      trajectory: 0
+      goal: 0.01
+    rightarm_wrist_1_joint:
+      trajectory: 0
+      goal: 0.01
+    rightarm_wrist_2_joint:
+      trajectory: 0
+      goal: 0.01
+    rightarm_wrist_3_joint:
+      trajectory: 0
+      goal: 0.01
+
+#Position controller
+rightarm_shoulder_pan_joint:
+  type: position_controllers/JointPositionController
+  joint: rightarm_shoulder_pan_joint
+rightarm_shoulder_lift_joint:
+  type: position_controllers/JointPositionController
+  joint: rightarm_shoulder_lift_joint
+rightarm_elbow_joint:
+  type: position_controllers/JointPositionController
+  joint: rightarm_elbow_joint
+rightarm_wrist_1_joint:
+  type: position_controllers/JointPositionController
+  joint: rightarm_wrist_1_joint
+rightarm_wrist_2_joint:
+  type: position_controllers/JointPositionController
+  joint: rightarm_wrist_2_joint
+rightarm_wrist_3_joint:
+  type: position_controllers/JointPositionController
+  joint: rightarm_wrist_3_joint
+
+rightarm/gripper_controller:
+  # Define the type of gripper to config on "ur_control/controllers.py > GripperController"
+  gripper_type: 'hand-e'
+  type: position_controllers/GripperActionController
+  joint: rightarm_hande_left_finger_joint
+  action_monitor_rate: 20
+  goal_tolerance: 0.002
+  max_effort: 100
+  stall_velocity_threshold: 0.001
+  stall_timeout: 1.0

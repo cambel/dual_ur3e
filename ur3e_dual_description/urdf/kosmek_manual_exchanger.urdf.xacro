@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!--  Author: Cristian Beltran -->
 
-  <!--
-  Author: Cristian Beltran
--->
   <xacro:macro name="kosmek_exchanger" params="prefix parent *origin">
 
     <joint name="${prefix}kosmek_base_joint" type="fixed">
@@ -105,6 +103,6 @@
       <parent link="${prefix}SXR0030_M_link"/>
       <child link="${prefix}SXR0030_TF4_link"/>
     </joint>
-      
+
   </xacro:macro>
 </robot>

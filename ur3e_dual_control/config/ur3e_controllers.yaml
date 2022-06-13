@@ -134,3 +134,13 @@ robot_status_controller:
    type: industrial_robot_status_controller/IndustrialRobotStatusController
    handle_name: industrial_robot_status_handle
    publish_rate: 10
+
+gripper_controller:
+  gripper_type: 'hand-e'
+  type: position_controllers/GripperActionController
+  joint: $(arg prefix)hande_left_finger_joint
+  action_monitor_rate: 20
+  goal_tolerance: 0.002
+  max_effort: 100
+  stall_velocity_threshold: 0.001
+  stall_timeout: 1.0

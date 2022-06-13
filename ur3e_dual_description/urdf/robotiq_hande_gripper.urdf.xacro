@@ -4,19 +4,14 @@
 <!-- This macro adds a convenient TF frame at the tip of the closed gripper. -->
 <!-- The position of the TF frame has not been measured at all and needs to be calibrated. -->
 
-<robot name="robotiq_hande_gripper_adapter_manual_exchanger"
+<robot name="robotiq_hande_gripper_adapter"
     xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- This seems too long when measuring the sensor,
        but works out when calibrating the tip_link to the world. -->
-    <xacro:macro name="robotiq_hande_gripper_adapter_manual_exchanger" params="prefix parent ft_prefix">
+    <xacro:macro name="robotiq_hande_gripper_adapter" params="prefix parent ft_prefix">
         <xacro:include filename="$(find robotiq_description)/urdf/robotiq_hande_gripper.urdf.xacro" />
-        <xacro:include filename="$(find ur3e_dual_description)/urdf/kosmek_manual_exchanger.urdf.xacro" />
 
-        <!-- tool exchanger -->
-        <xacro:kosmek_exchanger prefix="${prefix}" parent="${prefix}tool0">
-            <origin xyz="0 0.0 0.0025" rpy="0 ${pi/2.0} 0" />
-        </xacro:kosmek_exchanger>
 
         <link name="${prefix}robotiq_coupler">
             <visual>
@@ -38,8 +33,8 @@
         </link>
 
         <joint name="${prefix}robotiq_coupler_joint" type="fixed">
-            <origin xyz="-0.0405 0.0 0" rpy="0 ${-pi/2.0} 0" />
-            <parent link="${prefix}kosmek_exchanger_base_link"/>
+            <origin xyz="0 0 0.004" rpy="0 0 ${-pi/2.0}" />
+            <parent link="${prefix}tool0"/>
             <child link="${prefix}robotiq_coupler"/>
         </joint>
         <gazebo reference="${prefix}robotiq_coupler">
@@ -49,16 +44,16 @@
         </gazebo>
 
         <!-- Add additional links for us to plan with. Oriented like the UR frame. -->
-        <link name="${prefix}gripper_tip_link" />
+        <link name="${prefix}robotiq_hande_tip_link_joint" />
         <joint name="${prefix}manipulator_dummy_joint" type="fixed">
             <parent link="${prefix}robotiq_coupler"/>
-            <child link="${prefix}gripper_tip_link"/>
+            <child link="${prefix}robotiq_hande_tip_link_joint"/>
             <origin xyz="0 0 0.1441" rpy="0 0 0" />
         </joint>
 
         <!-- Attach the robotiq hand-e gripper -->
-        <xacro:robotiq_hande_gripper prefix="${prefix}" parent="${prefix}robotiq_coupler">
-            <origin xyz="0 0 0.004" rpy="0 0 0"/>
+        <xacro:robotiq_hande_gripper prefix="${prefix}" parent="${parent}">
+            <origin xyz="0 0 0.004" rpy="${pi/2.0} 0 ${pi/2}"/>
         </xacro:robotiq_hande_gripper>
 
         <!-- Gazebo FT sensor plugin -->
@@ -70,7 +65,7 @@
                 <updateRate>500.0</updateRate>
                 <topicName>${ft_prefix}/wrench</topicName>
                 <gaussianNoise>0.0</gaussianNoise>
-                <jointName>${prefix}wrist_3_joint</jointName>
+                <jointName>${prefix}wrist_3_link-tool0_fixed_joint</jointName>
             </plugin>
         </gazebo>
 
@@ -111,5 +106,6 @@
                 </gripper>
             </gazebo>
         </xacro:unless>
+        
     </xacro:macro>
 </robot>
