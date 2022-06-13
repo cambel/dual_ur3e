@@ -3,7 +3,7 @@ ARG from=ros:melodic-ros-base-bionic
 FROM nvidia/opengl:1.0-glvnd-runtime-ubuntu18.04 as nvidia
 FROM ${from}
 
-# FROM ros:melodic-ros-base-bionic
+RUN apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/3bf863cc.pub
 
 LABEL maintainer Cristian Beltran "beltran@hlab.sys.es.osaka-u.ac.jp"
 
@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 RUN pip install catkin-pkg rospkg PySide2 enum34
 
 ## Fix for gazebo
-ADD config.yaml /root/.ignition/fuel/config.yaml
+ADD docker/config.yaml /root/.ignition/fuel/config.yaml
 
 # Set up the workspace
 RUN /bin/bash -c "source /opt/ros/melodic/setup.bash \
